@@ -1,0 +1,32 @@
+{
+	"name": "11_TimeZoneChange",
+	"properties": {
+		"activities": [
+			{
+				"name": "getCurrentTimestamp",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "dt",
+					"value": {
+						"value": "@convertTimeZone(utcNow(),'utc','India Standard Time')",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"variables": {
+			"dt": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2025-01-23T04:47:05Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

@@ -1,0 +1,170 @@
+{
+	"name": "9_copyactivity_prvs_datefunction",
+	"properties": {
+		"activities": [
+			{
+				"name": "getCurrentDate",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "dt",
+					"value": {
+						"value": "@utcNow()",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "getPreviousDate",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "getCurrentDate",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "prvs_dt",
+					"value": {
+						"value": "@adddays(variables('dt'),-1)",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "getDateInddMMyyyy",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "getPreviousDate",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "filedt",
+					"value": {
+						"value": "@formatDateTime(variables('prvs_dt'),'ddMMyyyy')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "getSrcFilename",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "getDateInddMMyyyy",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "srcfilename",
+					"value": {
+						"value": "@concat('orders_',variables('filedt'),'.txt')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "getSrcFilename",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "BinarySource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "BinaryReadSettings"
+						}
+					},
+					"sink": {
+						"type": "BinarySink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "DS_src_parameter",
+						"type": "DatasetReference",
+						"parameters": {
+							"filename": {
+								"value": "@variables('srcfilename')",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DS_sink",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"variables": {
+			"dt": {
+				"type": "String"
+			},
+			"prvs_dt": {
+				"type": "String"
+			},
+			"filedt": {
+				"type": "String"
+			},
+			"srcfilename": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2025-01-24T15:06:02Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

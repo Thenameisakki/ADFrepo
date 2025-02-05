@@ -1,0 +1,9 @@
+{
+	"name": "akash569datafact",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "7005efce-1f7e-4d0d-87a8-9fb61ade0113",
+		"tenantId": "fd1d600f-e2d3-4457-80eb-9b7e27e44c59"
+	}
+}
