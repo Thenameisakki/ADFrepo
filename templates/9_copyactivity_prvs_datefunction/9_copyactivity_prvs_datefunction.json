@@ -1,0 +1,245 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name"
+		},
+		"LS_gen2": {
+			"type": "string"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/9_copyactivity_prvs_datefunction')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "getCurrentDate",
+						"type": "SetVariable",
+						"dependsOn": [],
+						"policy": {
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "dt",
+							"value": {
+								"value": "@utcNow()",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "getPreviousDate",
+						"type": "SetVariable",
+						"dependsOn": [
+							{
+								"activity": "getCurrentDate",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "prvs_dt",
+							"value": {
+								"value": "@adddays(variables('dt'),-1)",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "getDateInddMMyyyy",
+						"type": "SetVariable",
+						"dependsOn": [
+							{
+								"activity": "getPreviousDate",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "filedt",
+							"value": {
+								"value": "@formatDateTime(variables('prvs_dt'),'ddMMyyyy')",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "getSrcFilename",
+						"type": "SetVariable",
+						"dependsOn": [
+							{
+								"activity": "getDateInddMMyyyy",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "srcfilename",
+							"value": {
+								"value": "@concat('orders_',variables('filedt'),'.txt')",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "Copy data1",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "getSrcFilename",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "BinarySource",
+								"storeSettings": {
+									"type": "AzureBlobFSReadSettings",
+									"recursive": true
+								},
+								"formatSettings": {
+									"type": "BinaryReadSettings"
+								}
+							},
+							"sink": {
+								"type": "BinarySink",
+								"storeSettings": {
+									"type": "AzureBlobFSWriteSettings"
+								}
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "DS_src_parameter",
+								"type": "DatasetReference",
+								"parameters": {
+									"filename": {
+										"value": "@variables('srcfilename')",
+										"type": "Expression"
+									}
+								}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "DS_sink",
+								"type": "DatasetReference"
+							}
+						]
+					}
+				],
+				"variables": {
+					"dt": {
+						"type": "String"
+					},
+					"prvs_dt": {
+						"type": "String"
+					},
+					"filedt": {
+						"type": "String"
+					},
+					"srcfilename": {
+						"type": "String"
+					}
+				},
+				"annotations": [],
+				"lastPublishTime": "2025-01-24T15:06:02Z"
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/DS_src_parameter')]",
+				"[concat(variables('factoryId'), '/datasets/DS_sink')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_src_parameter')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "[parameters('LS_gen2')]",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"filename": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "Binary",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": {
+							"value": "@dataset().filename",
+							"type": "Expression"
+						},
+						"folderPath": "inbound",
+						"fileSystem": "akashcon"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_sink')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "[parameters('LS_gen2')]",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Binary",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "newcoustomers.txt",
+						"folderPath": "outbound",
+						"fileSystem": "akashcon"
+					}
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}
