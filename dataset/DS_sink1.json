@@ -1,0 +1,19 @@
+{
+	"name": "DS_sink1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_gen2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "newcoustomers.txt",
+				"folderPath": "outbound",
+				"fileSystem": "akashcon"
+			}
+		}
+	}
+}
