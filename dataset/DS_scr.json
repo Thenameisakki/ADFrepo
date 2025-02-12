@@ -11,8 +11,8 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": "customers.txt",
-				"folderPath": "inbound",
-				"fileSystem": "akashcon"
+				"folderPath": "Inbound",
+				"fileSystem": "akkicontainer"
 			}
 		}
 	}
