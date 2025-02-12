@@ -35,7 +35,7 @@
 				"typeProperties": {
 					"variableName": "msg",
 					"value": {
-						"value": "@concat('Person name is', variables('prsn_name'))",
+						"value": "@concat('Person name is ', variables('prsn_name'))",
 						"type": "Expression"
 					}
 				}
