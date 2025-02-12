@@ -1,0 +1,9 @@
+{
+	"name": "Akki-ADF",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "90078894-bda5-44e8-ba8e-a0e6f4ff92d5",
+		"tenantId": "19142d1e-9c1a-46f5-9720-ad8e51979b86"
+	}
+}
