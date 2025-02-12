@@ -42,11 +42,11 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "DS_src_parameter",
+						"referenceName": "DS_src_var_paramter",
 						"type": "DatasetReference",
 						"parameters": {
 							"filename": {
-								"value": "@variables('srcfiles')",
+								"value": "@variables('srcfiles_var')",
 								"type": "Expression"
 							}
 						}
@@ -69,13 +69,13 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"variableName": "srcfiles",
+					"variableName": "srcfiles_var",
 					"value": "catgories.txt"
 				}
 			}
 		],
 		"variables": {
-			"srcfiles": {
+			"srcfiles_var": {
 				"type": "String"
 			}
 		},
