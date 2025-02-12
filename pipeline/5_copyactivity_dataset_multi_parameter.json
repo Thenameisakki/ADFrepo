@@ -38,7 +38,7 @@
 						"referenceName": "DS_src_multi_parameter",
 						"type": "DatasetReference",
 						"parameters": {
-							"foldername": "srcfiles",
+							"foldername": "SRCFiles",
 							"filename": "sales.txt"
 						}
 					}
