@@ -10,9 +10,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "newcoustomers.txt",
-				"folderPath": "outbound",
-				"fileSystem": "akashcon"
+				"folderPath": "Outbound",
+				"fileSystem": "akkicontainer"
 			}
 		}
 	},
