@@ -1,0 +1,19 @@
+{
+	"name": "DS_sink_chnge_filename",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_gen2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "newcustomers.txt",
+				"folderPath": "Outbound",
+				"fileSystem": "akkicontainer"
+			}
+		}
+	}
+}
