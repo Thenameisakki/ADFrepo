@@ -10,8 +10,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"folderPath": "inbound",
-				"fileSystem": "akashcon"
+				"folderPath": "Inbound",
+				"fileSystem": "akkicontainer"
 			}
 		}
 	},
