@@ -1,0 +1,87 @@
+{
+	"name": "10_copyactivity_current_datefun_in_1var",
+	"properties": {
+		"activities": [
+			{
+				"name": "getsrcfile",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "srcfile",
+					"value": {
+						"value": "@concat('orders_',formatDateTime(utcNow(),'ddMMyyyy'),'.txt')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "getsrcfile",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "BinarySource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "BinaryReadSettings"
+						}
+					},
+					"sink": {
+						"type": "BinarySink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "DS_src_parameter",
+						"type": "DatasetReference",
+						"parameters": {
+							"filename": {
+								"value": "@variables('srcfile')",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DS_sink",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"variables": {
+			"srcfile": {
+				"type": "String"
+			}
+		},
+		"annotations": []
+	}
+}
