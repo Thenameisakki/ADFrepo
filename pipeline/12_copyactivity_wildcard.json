@@ -20,8 +20,8 @@
 						"storeSettings": {
 							"type": "AzureBlobFSReadSettings",
 							"recursive": true,
-							"wildcardFolderPath": "inbound",
-							"wildcardFileName": "file?.txt",
+							"wildcardFolderPath": "Inbound",
+							"wildcardFileName": "*20022025*",
 							"deleteFilesAfterCompletion": false
 						},
 						"formatSettings": {
