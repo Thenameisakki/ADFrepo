@@ -14,7 +14,7 @@
 				"typeProperties": {
 					"variableName": "srcfilename",
 					"value": {
-						"value": "@concat('orders_',formatDateTime(adddays(utcNow(),-2),'ddMMyyyy'),'.txt')",
+						"value": "@concat('orders_',formatDateTime(adddays(utcNow(),-1),'ddMMyyyy'),'.txt')",
 						"type": "Expression"
 					}
 				}
