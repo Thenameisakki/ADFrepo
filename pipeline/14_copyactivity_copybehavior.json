@@ -29,7 +29,7 @@
 						"type": "BinarySink",
 						"storeSettings": {
 							"type": "AzureBlobFSWriteSettings",
-							"copyBehavior": "FlattenHierarchy"
+							"copyBehavior": "PreserveHierarchy"
 						}
 					},
 					"enableStaging": false
@@ -42,7 +42,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "DS_sink",
+						"referenceName": "DS_sink_w",
 						"type": "DatasetReference"
 					}
 				]
