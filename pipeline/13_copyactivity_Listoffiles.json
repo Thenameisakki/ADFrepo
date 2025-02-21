@@ -19,7 +19,7 @@
 						"type": "BinarySource",
 						"storeSettings": {
 							"type": "AzureBlobFSReadSettings",
-							"fileListPath": "akashcon/inbound/filedetails.txt",
+							"fileListPath": "akkicontainer/Inbound/filedetails.txt",
 							"deleteFilesAfterCompletion": false
 						},
 						"formatSettings": {
