@@ -1,19 +1,27 @@
 {
-	"name": "DS_inbound_GMData",
+	"name": "DS_inbound_paramtr_forMetaData",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "LS_gen2",
 			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"filename": {
+				"type": "string"
+			}
 		},
 		"annotations": [],
 		"type": "Binary",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().filename",
+					"type": "Expression"
+				},
 				"folderPath": "Inbound",
 				"fileSystem": "akkicontainer"
 			}
 		}
-	},
-	"type": "Microsoft.DataFactory/factories/datasets"
+	}
 }
