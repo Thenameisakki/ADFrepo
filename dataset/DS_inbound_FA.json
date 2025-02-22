@@ -19,8 +19,8 @@
 					"value": "@dataset().filename",
 					"type": "Expression"
 				},
-				"folderPath": "inbound",
-				"fileSystem": "akashcon"
+				"folderPath": "Inbound",
+				"fileSystem": "akkicontainer"
 			}
 		}
 	},

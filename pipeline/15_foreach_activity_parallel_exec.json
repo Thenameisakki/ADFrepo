@@ -1,5 +1,5 @@
 {
-	"name": "15_foreach_activity",
+	"name": "15_foreach_activity_parallel_exec",
 	"properties": {
 		"activities": [
 			{
