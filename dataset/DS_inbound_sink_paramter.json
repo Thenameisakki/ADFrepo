@@ -1,5 +1,5 @@
 {
-	"name": "DS_outbound_paramete",
+	"name": "DS_inbound_sink_paramter",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "LS_gen2",
@@ -11,12 +11,11 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"folderPath": {
-					"value": "@concat('Outbound/CSV')",
+					"value": "@concat('Outbound/JSON')",
 					"type": "Expression"
 				},
 				"fileSystem": "akkicontainer"
 			}
 		}
-	},
-	"type": "Microsoft.DataFactory/factories/datasets"
+	}
 }

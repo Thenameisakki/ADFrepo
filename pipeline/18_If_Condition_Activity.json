@@ -131,11 +131,8 @@
 										],
 										"outputs": [
 											{
-												"referenceName": "DS_outbound_paramete",
-												"type": "DatasetReference",
-												"parameters": {
-													"foldername": "JSON"
-												}
+												"referenceName": "DS_inbound_sink_paramter",
+												"type": "DatasetReference"
 											}
 										]
 									}
@@ -187,10 +184,7 @@
 										"outputs": [
 											{
 												"referenceName": "DS_outbound_paramete",
-												"type": "DatasetReference",
-												"parameters": {
-													"foldername": "CSV"
-												}
+												"type": "DatasetReference"
 											}
 										]
 									}
