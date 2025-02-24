@@ -1,0 +1,26 @@
+{
+	"name": "DS_outbound_folder_parametr_2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_gen2",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"foldername": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": {
+					"value": "@concat('Outbound/',dataset().foldername)",
+					"type": "Expression"
+				},
+				"fileSystem": "akkicontainer"
+			}
+		}
+	}
+}
