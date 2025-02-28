@@ -1,0 +1,33 @@
+{
+	"name": "DS_Inbound_dept",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_gen2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "dept.csv",
+				"folderPath": "Inbound",
+				"fileSystem": "akkicontainer"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "deptid",
+				"type": "String"
+			},
+			{
+				"name": "deptname",
+				"type": "String"
+			}
+		]
+	}
+}
