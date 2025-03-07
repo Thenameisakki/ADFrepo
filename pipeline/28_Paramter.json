@@ -1,0 +1,30 @@
+{
+	"name": "28_Paramter",
+	"properties": {
+		"activities": [
+			{
+				"name": "getCountryName",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "cntry",
+					"value": {
+						"value": "@pipeline().globalParameters.country",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"variables": {
+			"cntry": {
+				"type": "String"
+			}
+		},
+		"annotations": []
+	}
+}
