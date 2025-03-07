@@ -1,0 +1,84 @@
+{
+	"name": "29_ExecutePipeline_Activity",
+	"properties": {
+		"activities": [
+			{
+				"name": "getPersonName",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "p_name",
+					"value": "Akki"
+				}
+			},
+			{
+				"name": "getPersonLocation",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "getPersonName",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "p_loc",
+					"value": "yavatmal"
+				}
+			},
+			{
+				"name": "Execute Pipeline1",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "getPersonLocation",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "27_Pipeline_Parameter",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"prsn_name": {
+							"value": "@variables('p_name')",
+							"type": "Expression"
+						},
+						"prsn_loc": {
+							"value": "@variables('p_loc')",
+							"type": "Expression"
+						}
+					}
+				}
+			}
+		],
+		"variables": {
+			"p_name": {
+				"type": "String"
+			},
+			"p_loc": {
+				"type": "String"
+			}
+		},
+		"annotations": []
+	}
+}
