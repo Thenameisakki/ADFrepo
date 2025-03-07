@@ -14,7 +14,7 @@
 				"typeProperties": {
 					"variableName": "msg",
 					"value": {
-						"value": "@concat('Person name is ',pipeline().parameters.prsn_name,' and Person loc is ',pipeline().parameters.prsn_loc)",
+						"value": "@concat('Person name is ',pipeline().parameters.prsn_name,', Person loc is ',pipeline().parameters.prsn_loc,' and Person country is ',pipeline().globalParameters.country)",
 						"type": "Expression"
 					}
 				}
