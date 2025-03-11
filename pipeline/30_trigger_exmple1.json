@@ -1,0 +1,27 @@
+{
+	"name": "30_trigger_exmple1",
+	"properties": {
+		"activities": [
+			{
+				"name": "getMSG",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "msg",
+					"value": "This is Akash"
+				}
+			}
+		],
+		"variables": {
+			"msg": {
+				"type": "String"
+			}
+		},
+		"annotations": []
+	}
+}
