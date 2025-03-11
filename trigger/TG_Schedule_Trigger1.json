@@ -1,0 +1,24 @@
+{
+	"name": "TG_Schedule_Trigger1",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "trigger_exmple1",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Minute",
+				"interval": 1,
+				"startTime": "2025-03-11T06:27:00",
+				"timeZone": "India Standard Time"
+			}
+		}
+	}
+}
