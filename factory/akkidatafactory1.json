@@ -1,0 +1,9 @@
+{
+	"name": "akkidatafactory1",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "db17d74d-04bf-4115-a04b-50027b0f1cf5",
+		"tenantId": "210dcb10-8623-4a36-a0a5-70674b7094ee"
+	}
+}
