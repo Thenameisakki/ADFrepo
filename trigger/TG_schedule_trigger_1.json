@@ -2,7 +2,7 @@
 	"name": "TG_schedule_trigger_1",
 	"properties": {
 		"annotations": [],
-		"runtimeState": "Started",
+		"runtimeState": "Stopped",
 		"pipelines": [
 			{
 				"pipelineReference": {
