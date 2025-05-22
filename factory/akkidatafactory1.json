@@ -1,5 +1,13 @@
 {
 	"name": "akkidatafactory1",
+	"properties": {
+		"globalParameters": {
+			"country": {
+				"type": "string",
+				"value": "INDIA"
+			}
+		}
+	},
 	"location": "eastus",
 	"identity": {
 		"type": "SystemAssigned",
