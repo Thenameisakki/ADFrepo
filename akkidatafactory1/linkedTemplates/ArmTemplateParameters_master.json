@@ -1,0 +1,45 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "akkidatafactory1"
+		},
+		"LS_AzureSqlDatabase1_password": {
+			"value": ""
+		},
+		"LS_gen2_accountKey": {
+			"value": ""
+		},
+		"AzureSqlDatabase1_properties_typeProperties_server": {
+			"value": "sqldbserver1.database.windows.net"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_database": {
+			"value": "SqlDatabase1"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_userName": {
+			"value": "Akashsqladmin"
+		},
+		"LS_AzureKeyVault_properties_typeProperties_baseUrl": {
+			"value": "https://akkikeyvault1.vault.azure.net/"
+		},
+		"LS_AzureSqlDatabase1_properties_typeProperties_server": {
+			"value": "sqldbserver1.database.windows.net"
+		},
+		"LS_AzureSqlDatabase1_properties_typeProperties_database": {
+			"value": "SqlDatabase1"
+		},
+		"LS_AzureSqlDatabase1_properties_typeProperties_userName": {
+			"value": "Akashsqladmin"
+		},
+		"LS_gen2_properties_typeProperties_url": {
+			"value": "https://akkistorage3.dfs.core.windows.net/"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
