@@ -1,0 +1,19 @@
+{
+	"name": "DS_fail_activity",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_gen2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "orders.txt",
+				"folderPath": "Inbound",
+				"fileSystem": "akkicontainer"
+			}
+		}
+	}
+}
