@@ -1,0 +1,18 @@
+{
+	"name": "DS_src_Append_Var",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_gen2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "SRCFiles",
+				"fileSystem": "akkicontainer"
+			}
+		}
+	}
+}
