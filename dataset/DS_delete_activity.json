@@ -1,0 +1,27 @@
+{
+	"name": "DS_delete_activity",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_gen2",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"srcfiles": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().srcfiles",
+					"type": "Expression"
+				},
+				"folderPath": "SRCFiles",
+				"fileSystem": "akkicontainer"
+			}
+		}
+	}
+}
