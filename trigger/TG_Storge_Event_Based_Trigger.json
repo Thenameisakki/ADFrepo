@@ -1,0 +1,25 @@
+{
+	"name": "TG_Storge_Event_Based_Trigger",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "32_Storge_Event_Based_Trigger_1",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/akkicontainer/blobs/Inbound/",
+			"blobPathEndsWith": "json",
+			"ignoreEmptyBlobs": true,
+			"scope": "/subscriptions/14d9f81c-657b-47d4-872d-41c1cc515416/resourceGroups/RG_Akki/providers/Microsoft.Storage/storageAccounts/akkistorage3",
+			"events": [
+				"Microsoft.Storage.BlobCreated"
+			]
+		}
+	}
+}
